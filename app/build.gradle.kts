@@ -65,7 +65,6 @@ dependencies {
     implementation ("androidx.camera:camera-view:${camerax_version}")
 
     implementation ("com.github.barteksc:android-pdf-viewer:3.2.0-beta.1")
-    implementation ("com.google.android.gms:play-services-mlkit-document-scanner:16.0.0-beta1")
 
     implementation ("com.github.bumptech.glide:glide:4.16.0")
 

@@ -15,14 +15,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
-
-
-
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navControl) as?
                 NavHostFragment
         navHostFragment?.let{
             navController = it.findNavController()
         }
+        
 
     }
 

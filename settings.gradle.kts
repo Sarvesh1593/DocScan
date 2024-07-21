@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "DocScan"
 include(":app")
- 
+include (":opencv")

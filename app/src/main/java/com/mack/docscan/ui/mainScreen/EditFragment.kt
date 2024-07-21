@@ -12,9 +12,6 @@ import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.mlkit.vision.documentscanner.GmsDocumentScannerOptions
-import com.google.mlkit.vision.documentscanner.GmsDocumentScanning
-import com.google.mlkit.vision.documentscanner.GmsDocumentScanningResult
 import com.mack.docscan.Adapter.EditImageAdapter
 import com.mack.docscan.databinding.FragmentEditBinding
 
@@ -25,25 +22,6 @@ class EditFragment : Fragment() {
     private lateinit var imageRecyclerView: RecyclerView
     private lateinit var imageAdapter: EditImageAdapter
     private val imageUris = mutableListOf<String>()
-    @SuppressLint("NotifyDataSetChanged")
-    private val scanLauncher = registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
-        if(result.resultCode == RESULT_OK){
-            val scanningResult = GmsDocumentScanningResult.fromActivityResultIntent(result.data)
-            scanningResult?.pages.let { pages ->
-                if(pages != null){
-                    for(page in pages){
-                        val imageUri = page.imageUri
-                        imageUris.add(imageUri.toString())
-                    }
-                    imageAdapter.notifyDataSetChanged()
-                }
-            }
-            scanningResult?.pdf.let { pdfPage ->
-                val pdfUri = pdfPage?.uri
-                val pageCount = pdfPage?.pageCount
-            }
-        }
-    }
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,17 +40,7 @@ class EditFragment : Fragment() {
             imageAdapter.notifyDataSetChanged()
         }
         binding?.btnEdit?.setOnClickListener {
-            initiateDocumentScan()
         }
-
         return binding?.root
     }
-
-    private fun initiateDocumentScan(){
-        val options = GmsDocumentScannerOptions.Builder()
-            .setGalleryImportAllowed(false)
-            .setResultFormats(GmsDocumentScannerOptions.RESULT_FORMAT_JPEG,GmsDocumentScannerOptions.RESULT_FORMAT_PDF)
-            .build()
-    }
-
 }
