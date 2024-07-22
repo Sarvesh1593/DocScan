@@ -13,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mack.docscan.Adapter.EditImageAdapter
+import com.mack.docscan.R
 import com.mack.docscan.databinding.FragmentEditBinding
 
 
@@ -40,6 +41,11 @@ class EditFragment : Fragment() {
             imageAdapter.notifyDataSetChanged()
         }
         binding?.btnEdit?.setOnClickListener {
+        }
+        binding?.btnRetake?.setOnClickListener {
+        }
+        binding?.btnScanMore?.setOnClickListener{
+
         }
         return binding?.root
     }

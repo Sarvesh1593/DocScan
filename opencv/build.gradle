@@ -101,7 +101,6 @@ android {
     namespace 'org.opencv'
     compileSdkVersion 34
     compileSdk 34
-
     defaultConfig {
         minSdkVersion 24
         targetSdkVersion 34
