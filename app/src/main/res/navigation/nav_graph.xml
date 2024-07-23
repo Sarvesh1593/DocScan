@@ -10,6 +10,7 @@
         android:name="com.mack.docscan.ui.mainScreen.MainScreen"
         android:label="fragment_main_screen"
         tools:layout="@layout/fragment_main_screen" >
+
         <action
             android:id="@+id/action_mainScreen_to_cameraFragment"
             app:destination="@id/cameraFragment" />
@@ -22,6 +23,10 @@
         android:name="com.mack.docscan.ui.mainScreen.CameraFragment"
         android:label="fragment_camera"
         tools:layout="@layout/fragment_camera" >
+        <argument
+            android:name="replaceIndex"
+            app:argType="integer"
+            android:defaultValue="-1"/>
         <action
             android:id="@+id/action_cameraFragment_to_editFragment"
             app:destination="@id/editFragment" />
@@ -33,7 +38,26 @@
         android:id="@+id/editFragment"
         android:name="com.mack.docscan.ui.mainScreen.EditFragment"
         android:label="fragment_edit"
-        tools:layout="@layout/fragment_edit" />
+        tools:layout="@layout/fragment_edit" >
+        <argument
+            android:name="imageUri"
+            app:argType="string"/>
+        <argument
+            android:name="replaceIndex"
+            app:argType="integer"
+            android:defaultValue="-1"/>
+        <action
+            android:id="@+id/action_editFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" >
+            <argument
+                android:name="replaceIndex"
+                app:argType="integer"
+                android:defaultValue="-1"/>
+        </action>
+
+    </fragment>
+
+
     <fragment
         android:id="@+id/PDFViewer"
         android:name="com.mack.docscan.ui.pdfViewer.PDFViewer"

@@ -3,8 +3,6 @@ package com.mack.docscan.ui.mainScreen
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
-import android.graphics.drawable.GradientDrawable
-import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -24,12 +22,10 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.mack.docscan.R
 import com.mack.docscan.databinding.FragmentCameraBinding
 import java.io.File
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 class CameraFragment : Fragment() {
 
@@ -43,6 +39,8 @@ class CameraFragment : Fragment() {
         R.drawable.autoflash
     )
     private var isPhotoBeingTaken = false
+
+    private val args : CameraFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -159,7 +157,6 @@ class CameraFragment : Fragment() {
             } catch (exc: Exception) {
                 Log.e("CameraFragment", "Use case binding failed", exc)
             }
-
         }, ContextCompat.getMainExecutor(requireContext()))
     }
 
@@ -175,7 +172,7 @@ class CameraFragment : Fragment() {
             object : ImageCapture.OnImageSavedCallback{
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                     val savedUri = outputFileResults.savedUri?: Uri.fromFile(photoFile)
-                    navigateToEditFragment(savedUri.toString())
+                    navigateToEditFragment(savedUri.toString(),args.replaceIndex)
                 }
 
                 override fun onError(exception: ImageCaptureException) {
@@ -185,14 +182,10 @@ class CameraFragment : Fragment() {
             }
         )
     }
-    private fun navigateToEditFragment(imageUri : String){
-        val bundle = Bundle().apply {
-            putString("imageUri",imageUri)
-        }
-        val editFragment = EditFragment().apply {
-            arguments = bundle
-        }
-        loadFragment(editFragment)
+    private fun navigateToEditFragment(imageUri : String, replaceIndex : Int?){
+
+        val action = CameraFragmentDirections.actionCameraFragmentToEditFragment(imageUri, replaceIndex!!)
+        findNavController().navigate(action)
     }
     private fun loadFragment(fragment: Fragment){
         parentFragmentManager.beginTransaction()
