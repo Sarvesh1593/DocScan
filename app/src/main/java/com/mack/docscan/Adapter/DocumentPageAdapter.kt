@@ -33,7 +33,6 @@ class DocumentPagerAdapter(private var images : List<Uri>): RecyclerView.Adapter
         Glide.with(holder.imageView.context)
             .load(uri)
             .apply(RequestOptions().override(800, 600))
-            .centerCrop()
             .error(uri.toString())
             .into(holder.imageView)
     }

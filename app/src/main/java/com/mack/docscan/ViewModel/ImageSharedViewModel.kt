@@ -15,7 +15,7 @@ class ImageSharedViewModel : ViewModel() {
 
     fun addImage(uri: Uri) {
         _imageUris.value?.add(uri)
-        _imageUris.value = _imageUris.value // Trigger LiveData update
+        _imageUris.postValue(_imageUris.value)
     }
 
     fun replaceImage(uri: Uri, index: Int) {
@@ -30,5 +30,14 @@ class ImageSharedViewModel : ViewModel() {
 
     fun setCurrentIndex(index: Int) {
         _currentIndex.value = index
+    }
+    fun resetIndex() {
+        _currentIndex.value = 0
+    }
+
+    fun clearImageUris() {
+        _imageUris.value?.clear()
+        _imageUris.postValue(_imageUris.value)
+        resetIndex()
     }
 }

@@ -1,6 +1,7 @@
 package com.mack.docscan.ui.mainScreen
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -25,7 +27,6 @@ class EditFragment : Fragment() {
     private lateinit var viewPager: ViewPager2
     private lateinit var adapter: DocumentPagerAdapter
     private lateinit var imageSharedViewModel: ImageSharedViewModel
-    private var currentPage: Int = 0
     private val args : EditFragmentArgs by navArgs()
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
@@ -36,12 +37,36 @@ class EditFragment : Fragment() {
         binding = FragmentEditBinding.inflate(layoutInflater,container,false)
         viewPager = binding!!.imageViewPager
 
-
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            showExitConfirmationDialog()
+        }
+        binding?.editBackBtn?.setOnClickListener {
+            imageSharedViewModel.resetIndex()
+            imageSharedViewModel.clearImageUris()
+            findNavController().navigate(EditFragmentDirections.actionEditFragmentToCameraFragment())
+        }
         binding?.btnEdit?.setOnClickListener {
         }
         // This button do for retaking the photo and replacing the existing photo
 
         return binding?.root
+    }
+
+    private fun showExitConfirmationDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Exit Confirmation")
+            .setMessage("Do you want to delete the images and exit or save them?")
+            .setPositiveButton("Delete and Exit") { _, _ ->
+                // Handle delete and exit
+                imageSharedViewModel.clearImageUris()
+                activity?.finish() // Exit the app or navigate to another activity/fragment
+            }
+            .setNegativeButton("Save and Exit") { _, _ ->
+                // Handle save and exit
+                activity?.finish() // Exit the app or navigate to another activity/fragment
+            }
+            .setNeutralButton("Cancel", null) // Do nothing on cancel
+            .show()
     }
 
 
@@ -60,7 +85,7 @@ class EditFragment : Fragment() {
         }
 //        binding?.btnRetake?.setOnClickListener {
 //            Log.d("retake",it.toString())
-//            currentPage = viewPager.currentItem
+//            val currentPage = viewPager.currentItem
 //            imageSharedViewModel.setCurrentIndex(currentPage)
 //            findNavController().navigate(EditFragmentDirections.actionEditFragmentToCameraFragment())
 //        }
@@ -80,7 +105,6 @@ class EditFragment : Fragment() {
                 super.onPageSelected(position)
                 imageSharedViewModel.setCurrentIndex(position)
             }
-
         })
     }
 
@@ -88,6 +112,13 @@ class EditFragment : Fragment() {
         super.onDestroy()
         binding = null
         Glide.get(requireActivity()).clearMemory()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (imageSharedViewModel.currentIndex.value != -1) {
+            imageSharedViewModel.resetIndex()
+        }
     }
 }
 
