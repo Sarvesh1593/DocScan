@@ -1,14 +1,19 @@
 package com.mack.docscan.Adapter
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.mack.docscan.R
 
-class EditImageAdapter( private val imageUris :List<String>): RecyclerView.Adapter<EditImageAdapter.ImageViewHolder>() {
+class DocumentPagerAdapter(private var images : List<Uri>): RecyclerView.Adapter<DocumentPagerAdapter.ImageViewHolder>() {
     class ImageViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val imageView : ImageView = itemView.findViewById(R.id.IV_ImageShow)
     }
@@ -19,13 +24,22 @@ class EditImageAdapter( private val imageUris :List<String>): RecyclerView.Adapt
     }
 
     override fun getItemCount(): Int {
-         return imageUris.size
+         return images.size
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        val uri = imageUris[position]
-        Glide.with(holder.itemView.context)
+        val uri = images[position]
+        Log.d("uriProblem",uri.toString())
+        Glide.with(holder.imageView.context)
             .load(uri)
+            .apply(RequestOptions().override(800, 600))
+            .centerCrop()
+            .error(uri.toString())
             .into(holder.imageView)
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(newImages : List<Uri>){
+        images = newImages
+        notifyDataSetChanged()
     }
 }

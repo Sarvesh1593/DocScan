@@ -10,7 +10,6 @@
         android:name="com.mack.docscan.ui.mainScreen.MainScreen"
         android:label="fragment_main_screen"
         tools:layout="@layout/fragment_main_screen" >
-
         <action
             android:id="@+id/action_mainScreen_to_cameraFragment"
             app:destination="@id/cameraFragment" />
@@ -54,7 +53,6 @@
                 app:argType="integer"
                 android:defaultValue="-1"/>
         </action>
-
     </fragment>
 
 

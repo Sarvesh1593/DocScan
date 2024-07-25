@@ -43,8 +43,8 @@
             android:contentDescription="@string/option"/>
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/image_RV"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/image_viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:contentDescription="@string/image_show"

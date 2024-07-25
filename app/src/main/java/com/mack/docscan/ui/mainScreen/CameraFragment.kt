@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.PopupWindow
@@ -21,9 +20,13 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.viewpager2.widget.ViewPager2
 import com.mack.docscan.R
+import com.mack.docscan.ViewModel.ImageSharedViewModel
+import com.mack.docscan.ViewModel.SharedViewModel
 import com.mack.docscan.databinding.FragmentCameraBinding
 import java.io.File
 
@@ -33,6 +36,7 @@ class CameraFragment : Fragment() {
     private var imageCapture: ImageCapture? = null
     private var currentFlashModeIndex = 0
     private lateinit var popupWindow : PopupWindow
+    private lateinit var imageSharedViewModel: ImageSharedViewModel
     private val flashIcons = listOf(
         R.drawable.off_flash,
         R.drawable.on_flash,
@@ -50,9 +54,7 @@ class CameraFragment : Fragment() {
 
         startCamera()
 
-        binding?.cancel?.setOnClickListener {
-            findNavController().navigate(R.id.action_cameraFragment_to_mainScreen)
-        }
+
         binding!!.clickButton.setOnClickListener {
             if (!isPhotoBeingTaken) {
                 isPhotoBeingTaken = true
@@ -70,6 +72,14 @@ class CameraFragment : Fragment() {
         return binding!!.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        imageSharedViewModel  = ViewModelProvider(requireActivity())[ImageSharedViewModel::class.java]
+        binding?.cancel?.setOnClickListener {
+            findNavController().navigate(R.id.action_cameraFragment_to_mainScreen)
+        }
+
+    }
     @SuppressLint("Recycle")
     private fun photoClickAnimateBtn(btn : ImageButton) {
         val scaleDownX = ObjectAnimator.ofFloat(btn, "scaleX", 0.8f)
@@ -172,9 +182,8 @@ class CameraFragment : Fragment() {
             object : ImageCapture.OnImageSavedCallback{
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                     val savedUri = outputFileResults.savedUri?: Uri.fromFile(photoFile)
-                    navigateToEditFragment(savedUri.toString(),args.replaceIndex)
+                    handleCapturedImage(savedUri)
                 }
-
                 override fun onError(exception: ImageCaptureException) {
                     TODO("Not yet implemented")
                 }
@@ -182,14 +191,10 @@ class CameraFragment : Fragment() {
             }
         )
     }
-    private fun navigateToEditFragment(imageUri : String, replaceIndex : Int?){
+    private fun handleCapturedImage(capturedImageUri: Uri) {
+        val currentIndex = imageSharedViewModel.currentIndex.value
 
-        val action = CameraFragmentDirections.actionCameraFragmentToEditFragment(imageUri, replaceIndex!!)
-        findNavController().navigate(action)
-    }
-    private fun loadFragment(fragment: Fragment){
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.navControl,fragment)
-            .commit()
+        imageSharedViewModel.addImage(capturedImageUri)
+        findNavController().navigate(R.id.action_cameraFragment_to_editFragment)
     }
 }

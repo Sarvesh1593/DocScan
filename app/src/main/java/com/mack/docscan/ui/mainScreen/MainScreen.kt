@@ -66,8 +66,6 @@ class MainScreen : Fragment() {
             requestPermissionLauncher.launch(arrayOf(android.Manifest.permission.CAMERA,android.Manifest.permission.READ_MEDIA_IMAGES))
         }
     }
-
-
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
