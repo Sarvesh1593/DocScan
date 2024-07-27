@@ -192,13 +192,12 @@ class CameraFragment : Fragment() {
         )
     }
     private fun handleCapturedImage(capturedImageUri: Uri) {
-//        val currentIndex = imageSharedViewModel.currentIndex.value
-//        if (currentIndex != null && currentIndex >= 0) {
-//            imageSharedViewModel.replaceImage(capturedImageUri, currentIndex)
-//        } else {
-//
-//        }
-        imageSharedViewModel.addImage(capturedImageUri)
+        val currentIndex = imageSharedViewModel.currentIndex.value
+        if (currentIndex != null && currentIndex >= 0) {
+            imageSharedViewModel.replaceImage(capturedImageUri, currentIndex)
+        } else {
+            imageSharedViewModel.addImage(capturedImageUri)
+        }
         findNavController().navigate(R.id.action_cameraFragment_to_editFragment)
     }
 }

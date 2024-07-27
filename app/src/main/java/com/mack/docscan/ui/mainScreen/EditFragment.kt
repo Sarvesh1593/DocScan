@@ -83,12 +83,12 @@ class EditFragment : Fragment() {
         imageSharedViewModel.currentIndex.observe(viewLifecycleOwner) { index ->
             viewPager.currentItem = index
         }
-//        binding?.btnRetake?.setOnClickListener {
-//            Log.d("retake",it.toString())
-//            val currentPage = viewPager.currentItem
-//            imageSharedViewModel.setCurrentIndex(currentPage)
-//            findNavController().navigate(EditFragmentDirections.actionEditFragmentToCameraFragment())
-//        }
+        binding?.btnRetake?.setOnClickListener {
+            Log.d("retake",it.toString())
+            val currentPage = viewPager.currentItem
+            imageSharedViewModel.setCurrentIndex(currentPage)
+            findNavController().navigate(EditFragmentDirections.actionEditFragmentToCameraFragment())
+        }
         binding?.btnScanMore?.setOnClickListener{
             Log.d("ScanMore",it.toString())
             imageSharedViewModel.setCurrentIndex(-1)

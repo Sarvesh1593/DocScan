@@ -2,6 +2,7 @@ package com.mack.docscan.ViewModel
 
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,9 +20,20 @@ class ImageSharedViewModel : ViewModel() {
     }
 
     fun replaceImage(uri: Uri, index: Int) {
-        _imageUris.value?.set(index, uri)
-        _imageUris.value = _imageUris.value
+        val list = _imageUris.value ?: mutableListOf()
+        if (index in list.indices) {
+            list[index] = uri
+            _imageUris.postValue(list) // Post value to notify observers
+        } else {
+            // Log error and consider adding the image instead if the list is empty
+            Log.e("ImageSharedViewModel", "Invalid index: $index for replacement. List size: ${list.size}")
+            if (list.isEmpty() && index == 0) {
+                list.add(uri)
+                _imageUris.postValue(list)
+            }
+        }
     }
+
 
     fun removeImage(index: Int) {
         _imageUris.value?.removeAt(index)
