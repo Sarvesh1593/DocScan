@@ -38,17 +38,36 @@ class EditPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        imageSharedViewModel = ViewModelProvider(requireActivity())[ImageSharedViewModel::class.java]
 
+        imageSharedViewModel = ViewModelProvider(requireActivity())[ImageSharedViewModel::class.java]
         rotateSharedViewModel = ViewModelProvider(requireActivity())[RotateSharedViewModel::class.java]
 
-        rotateSharedViewModel.uri.observe(viewLifecycleOwner){ uri ->
-            binding?.IVPage?.setImageURI(uri)
-        }
-        imageSharedViewModel.imageUri.observe(viewLifecycleOwner){ uri ->
-            binding?.IVPage?.setImageURI(uri)
+        // Track the URI state to avoid redundant updates
+        var currentUri: Uri? = null
 
+        // Observe imageSharedViewModel to handle the initial or default image
+        imageSharedViewModel.imageUri.observe(viewLifecycleOwner) { uri ->
+            if (currentUri == null) {  // Only update if no rotated URI is available
+                currentUri = uri
+                Log.d("EditPageFragment", "Default image URI: $uri")
+                updateImageView(uri)
+            }
         }
 
+        // Observe rotateSharedViewModel to handle rotated images
+        rotateSharedViewModel.uri.observe(viewLifecycleOwner) { uri ->
+            currentUri = uri
+            Log.d("EditPageFragment", "Rotated image URI: $uri")
+            updateImageView(uri)
+        }
     }
+
+    // Helper function to update the ImageView
+    private fun updateImageView(uri: Uri?) {
+        binding?.IVPage?.apply {
+            setImageURI(null)  // Clear existing image
+            setImageURI(uri)   // Set new image
+        }
+    }
+
 }
