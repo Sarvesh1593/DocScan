@@ -14,9 +14,15 @@ class ImageSharedViewModel : ViewModel() {
     private val _currentIndex = MutableLiveData<Int>(0)
     val currentIndex: LiveData<Int> get() = _currentIndex
 
+    private val _imageUri = MutableLiveData<Uri?>()
+    val imageUri: LiveData<Uri?> get() = _imageUri
+
     fun addImage(uri: Uri) {
         _imageUris.value?.add(uri)
         _imageUris.postValue(_imageUris.value)
+    }
+    fun setImageUri(uri: Uri?) {
+        _imageUri.value = uri
     }
 
     fun replaceImage(uri: Uri, index: Int) {

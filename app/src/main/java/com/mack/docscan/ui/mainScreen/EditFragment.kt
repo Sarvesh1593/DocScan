@@ -17,17 +17,17 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.mack.docscan.Adapter.DocumentPagerAdapter
 import com.mack.docscan.ViewModel.ImageSharedViewModel
+import com.mack.docscan.ViewModel.RotateSharedViewModel
 import com.mack.docscan.databinding.FragmentEditBinding
 
 
 class EditFragment : Fragment() {
 
     private var binding : FragmentEditBinding? = null
-    private val imageUris = mutableListOf<Uri>()
     private lateinit var viewPager: ViewPager2
     private lateinit var adapter: DocumentPagerAdapter
     private lateinit var imageSharedViewModel: ImageSharedViewModel
-    private val args : EditFragmentArgs by navArgs()
+    private lateinit var currentImageUri : Uri
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +46,8 @@ class EditFragment : Fragment() {
             findNavController().navigate(EditFragmentDirections.actionEditFragmentToCameraFragment())
         }
         binding?.btnEdit?.setOnClickListener {
+            imageSharedViewModel.setImageUri(currentImageUri)
+            findNavController().navigate(EditFragmentDirections.actionEditFragmentToEditPageFragment())
         }
         // This button do for retaking the photo and replacing the existing photo
 
@@ -104,6 +106,7 @@ class EditFragment : Fragment() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 imageSharedViewModel.setCurrentIndex(position)
+                currentImageUri = adapter.getImageUri(position)
             }
         })
     }

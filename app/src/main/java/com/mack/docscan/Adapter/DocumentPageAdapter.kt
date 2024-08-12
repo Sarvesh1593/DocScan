@@ -41,4 +41,7 @@ class DocumentPagerAdapter(private var images : List<Uri>): RecyclerView.Adapter
         images = newImages
         notifyDataSetChanged()
     }
+    fun getImageUri(position: Int): Uri {
+        return images[position]
+    }
 }
