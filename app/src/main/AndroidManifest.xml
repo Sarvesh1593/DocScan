@@ -49,6 +49,9 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
+        <activity android:name="com.yalantis.ucrop.UCropActivity"
+            android:theme="@style/Base.Theme.DocScan"/>
     </application>
 
 </manifest>
