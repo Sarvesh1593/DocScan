@@ -8,9 +8,9 @@
     "triple": "i686-linux-android",
     "llvmTriple": "i686-none-linux-android"
   },
-  "cxxBuildFolder": "C:\\Android\\DocScan\\opencv\\.cxx\\Debug\\3b5n5i1p\\x86",
-  "soFolder": "C:\\Android\\DocScan\\opencv\\build\\intermediates\\cxx\\Debug\\3b5n5i1p\\obj\\x86",
-  "soRepublishFolder": "C:\\Android\\DocScan\\opencv\\build\\intermediates\\cmake\\debug\\obj\\x86",
+  "cxxBuildFolder": "C:\\Users\\Sarvesh Chaudhary\\StudioProjects\\DocScan\\opencv\\.cxx\\Debug\\3b5n5i1p\\x86",
+  "soFolder": "C:\\Users\\Sarvesh Chaudhary\\StudioProjects\\DocScan\\opencv\\build\\intermediates\\cxx\\Debug\\3b5n5i1p\\obj\\x86",
+  "soRepublishFolder": "C:\\Users\\Sarvesh Chaudhary\\StudioProjects\\DocScan\\opencv\\build\\intermediates\\cmake\\debug\\obj\\x86",
   "abiPlatformVersion": 24,
   "cmake": {
     "effectiveConfiguration": {
@@ -40,13 +40,13 @@
     ],
     "cmakeSettingsConfiguration": "android-gradle-plugin-predetermined-name",
     "module": {
-      "cxxFolder": "C:\\Android\\DocScan\\opencv\\.cxx",
-      "intermediatesBaseFolder": "C:\\Android\\DocScan\\opencv\\build\\intermediates",
-      "intermediatesFolder": "C:\\Android\\DocScan\\opencv\\build\\intermediates\\cxx",
+      "cxxFolder": "C:\\Users\\Sarvesh Chaudhary\\StudioProjects\\DocScan\\opencv\\.cxx",
+      "intermediatesBaseFolder": "C:\\Users\\Sarvesh Chaudhary\\StudioProjects\\DocScan\\opencv\\build\\intermediates",
+      "intermediatesFolder": "C:\\Users\\Sarvesh Chaudhary\\StudioProjects\\DocScan\\opencv\\build\\intermediates\\cxx",
       "gradleModulePathName": ":opencv",
-      "moduleRootFolder": "C:\\Android\\DocScan\\opencv",
-      "moduleBuildFile": "C:\\Android\\DocScan\\opencv\\build.gradle",
-      "makeFile": "C:\\Android\\DocScan\\opencv\\libcxx_helper\\CMakeLists.txt",
+      "moduleRootFolder": "C:\\Users\\Sarvesh Chaudhary\\StudioProjects\\DocScan\\opencv",
+      "moduleBuildFile": "C:\\Users\\Sarvesh Chaudhary\\StudioProjects\\DocScan\\opencv\\build.gradle",
+      "makeFile": "C:\\Users\\Sarvesh Chaudhary\\StudioProjects\\DocScan\\opencv\\libcxx_helper\\CMakeLists.txt",
       "buildSystem": "CMAKE",
       "ndkFolder": "C:\\Android\\sdk\\ndk\\26.1.10909125",
       "ndkFolderBeforeSymLinking": "C:\\Android\\sdk\\ndk\\26.1.10909125",
@@ -144,7 +144,7 @@
         "SYSTEM": {}
       },
       "project": {
-        "rootBuildGradleFolder": "C:\\Android\\DocScan",
+        "rootBuildGradleFolder": "C:\\Users\\Sarvesh Chaudhary\\StudioProjects\\DocScan",
         "sdkFolder": "C:\\Android\\sdk",
         "isBuildOnlyTargetAbiEnabled": true,
         "isCmakeBuildCohabitationEnabled": false,
@@ -163,12 +163,12 @@
   "buildSettings": {
     "environmentVariables": []
   },
-  "prefabFolder": "C:\\Android\\DocScan\\opencv\\.cxx\\Debug\\3b5n5i1p\\prefab\\x86",
+  "prefabFolder": "C:\\Users\\Sarvesh Chaudhary\\StudioProjects\\DocScan\\opencv\\.cxx\\Debug\\3b5n5i1p\\prefab\\x86",
   "isActiveAbi": true,
   "fullConfigurationHash": "3b5n5i1p305r1fv1l55245k6q4o3i1d1u1b421qa5l4rh26203vg6x3h6w4j",
   "fullConfigurationHashKey": "# Values used to calculate the hash in this folder name.\n# Should not depend on the absolute path of the project itself.\n#   - AGP: 8.5.1.\n#   - $NDK is the path to NDK 26.1.10909125.\n#   - $PROJECT is the path to the parent folder of the root Gradle build file.\n#   - $ABI is the ABI to be built with. The specific value doesn\u0027t contribute to the value of the hash.\n#   - $HASH is the hash value computed from this text.\n#   - $CMAKE is the path to CMake 3.22.1.\n#   - $NINJA is the path to Ninja.\n-H$PROJECT/opencv/libcxx_helper\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d24\n-DANDROID_PLATFORM\u003dandroid-24\n-DANDROID_ABI\u003d$ABI\n-DCMAKE_ANDROID_ARCH_ABI\u003d$ABI\n-DANDROID_NDK\u003d$NDK\n-DCMAKE_ANDROID_NDK\u003d$NDK\n-DCMAKE_TOOLCHAIN_FILE\u003d$NDK/build/cmake/android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003d$NINJA\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003d$PROJECT/opencv/build/intermediates/cxx/Debug/$HASH/obj/$ABI\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003d$PROJECT/opencv/build/intermediates/cxx/Debug/$HASH/obj/$ABI\n-DCMAKE_BUILD_TYPE\u003dDebug\n-B$PROJECT/opencv/.cxx/Debug/$HASH/$ABI\n-GNinja\n-DANDROID_STL\u003dc++_shared",
   "configurationArguments": [
-    "-HC:\\Android\\DocScan\\opencv\\libcxx_helper",
+    "-HC:\\Users\\Sarvesh Chaudhary\\StudioProjects\\DocScan\\opencv\\libcxx_helper",
     "-DCMAKE_SYSTEM_NAME\u003dAndroid",
     "-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON",
     "-DCMAKE_SYSTEM_VERSION\u003d24",
@@ -179,13 +179,13 @@
     "-DCMAKE_ANDROID_NDK\u003dC:\\Android\\sdk\\ndk\\26.1.10909125",
     "-DCMAKE_TOOLCHAIN_FILE\u003dC:\\Android\\sdk\\ndk\\26.1.10909125\\build\\cmake\\android.toolchain.cmake",
     "-DCMAKE_MAKE_PROGRAM\u003dC:\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe",
-    "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dC:\\Android\\DocScan\\opencv\\build\\intermediates\\cxx\\Debug\\3b5n5i1p\\obj\\x86",
-    "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dC:\\Android\\DocScan\\opencv\\build\\intermediates\\cxx\\Debug\\3b5n5i1p\\obj\\x86",
+    "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dC:\\Users\\Sarvesh Chaudhary\\StudioProjects\\DocScan\\opencv\\build\\intermediates\\cxx\\Debug\\3b5n5i1p\\obj\\x86",
+    "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dC:\\Users\\Sarvesh Chaudhary\\StudioProjects\\DocScan\\opencv\\build\\intermediates\\cxx\\Debug\\3b5n5i1p\\obj\\x86",
     "-DCMAKE_BUILD_TYPE\u003dDebug",
-    "-BC:\\Android\\DocScan\\opencv\\.cxx\\Debug\\3b5n5i1p\\x86",
+    "-BC:\\Users\\Sarvesh Chaudhary\\StudioProjects\\DocScan\\opencv\\.cxx\\Debug\\3b5n5i1p\\x86",
     "-GNinja",
     "-DANDROID_STL\u003dc++_shared"
   ],
   "stlLibraryFile": "C:\\Android\\sdk\\ndk\\26.1.10909125\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\i686-linux-android\\libc++_shared.so",
-  "intermediatesParentFolder": "C:\\Android\\DocScan\\opencv\\build\\intermediates\\cxx\\Debug\\3b5n5i1p"
+  "intermediatesParentFolder": "C:\\Users\\Sarvesh Chaudhary\\StudioProjects\\DocScan\\opencv\\build\\intermediates\\cxx\\Debug\\3b5n5i1p"
 }
